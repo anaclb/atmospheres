@@ -34,14 +34,14 @@ coefs2 = new_array[:,4]
 N = len(new_array)
 params = np.empty((N,8))
 for i in range(N):
-    params[i,1] = float(data[i][1:6]) / 1000
-    params[i,2] = float(data[i][7:12]) / 1000
-    params[i,3] = float(data[i][13:18]) / 1000
-    params[i,4] = float(data[i][19:24]) / 1000
-    params[i,5] = float(data[i][25:30]) / 1000
-    params[i,5] = float(data[i][31:36]) / 1000
-    params[i,6] = float(data[i][37:42]) / 1000
-    params[i,7] = float(data[i][43:48]) / 1000
+    params[i,1] = float(data[i][1:6])
+    params[i,2] = float(data[i][7:12])
+    params[i,3] = float(data[i][13:18]) 
+    params[i,4] = float(data[i][19:24])
+    params[i,5] = float(data[i][25:30])
+    params[i,5] = float(data[i][31:36])
+    params[i,6] = float(data[i][37:42])
+    params[i,7] = float(data[i][43:48]) 
 
-atomic = pd.concat([df(ele),df(params),df(coefs1),df(coefs2)],axis=1)
+atomic = pd.concat([df(ele),df(params)/1000,df(coefs1),df(coefs2)],axis=1)
 atomic.columns = ['ele','mass','e_atom','e_ion','e_ion2','p_atom','p_ion','p_ion2','p_ion3','coef1','coef2']
