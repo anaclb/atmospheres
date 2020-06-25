@@ -24,7 +24,7 @@ with open(atomic_txt) as f:
         raw_array = np.append(raw_array,x)
 
 L = len(raw_array)
-new_array = np.reshape(new_array, (L//5,5))
+new_array = np.reshape(raw_array, (L//5,5))
 
 ele = new_array[:,1]
 data = new_array[:,2]
