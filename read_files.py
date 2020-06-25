@@ -24,15 +24,16 @@ with open(atomic_txt) as f:
         raw_array = np.append(raw_array,x)
 
 L = len(raw_array)
-raw_array = np.reshape(raw_array, (L//5,5))
+new_array = np.reshape(new_array, (L//5,5))
 
 ele = raw_array[:,1]
 data = raw_array[:,2]
 coefs1 = raw_array[:,3]
 coefs2 = raw_array[:,4]
 
-params = np.empty((L,8))
-for i in range(L):
+N = len(new_array)
+params = np.empty((N,8))
+for i in range(N):
     params[i,1] = float(data[i][1:6]) / 1000
     params[i,2] = float(data[i][7:12]) / 1000
     params[i,3] = float(data[i][13:18]) / 1000
