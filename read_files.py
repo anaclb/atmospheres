@@ -26,10 +26,10 @@ with open(atomic_txt) as f:
 L = len(raw_array)
 new_array = np.reshape(new_array, (L//5,5))
 
-ele = raw_array[:,1]
-data = raw_array[:,2]
-coefs1 = raw_array[:,3]
-coefs2 = raw_array[:,4]
+ele = new_array[:,1]
+data = new_array[:,2]
+coefs1 = new_array[:,3]
+coefs2 = new_array[:,4]
 
 N = len(new_array)
 params = np.empty((N,8))
