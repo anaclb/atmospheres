@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
-##read files into pandas
+##read files into pandas: atomic, lines, abundandes, model
+
 import numpy as np
 import pandas as pd
 from pandas import DataFrame as df
 import numba
-
 
 atomic_txt = "atomic.dat"
 abundances_txt = "abundances.dat"
@@ -44,4 +44,3 @@ for i in range(L):
 
 atomic = pd.concat([df(ele),df(params),df(coefs1),df(coefs2)],axis=1)
 atomic.columns = ['ele','mass','e_atom','e_ion','e_ion2','p_atom','p_ion','p_ion2','p_ion3','coef1','coef2']
-print(atomic)
