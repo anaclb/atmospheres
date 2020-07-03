@@ -66,7 +66,7 @@ def fracc(logn_e,T_layer,logN_H,logn_H):
 
 ##organizar dados
 def pandas_data(logn_e, T_layer,logN_H,logn_H):
-    N_AI, N_AII, U_AI, U_AII = densi(logn_e,T_layer,logN_H,logn_H)
+    N_AI, N_AII, U_AI, U_AII = fracc(logn_e,T_layer,logN_H,logn_H)
     concat = np.concatenate([np.array(atomic_test.ele),N_AII,U_AI,U_AII,e_ion1])
     concat = np.reshape(concat,(5,6))
     data = pd.DataFrame(concat).transpose()
