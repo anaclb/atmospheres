@@ -18,7 +18,7 @@ pd_model =  pd.read_csv(model_txt, delimiter='\t',header=0)
 
 raw_array = np.array([])
 with open(atomic_txt) as f:
-    for x in f:
+    for i,x in enumerate(f):
         x = x.replace("\n","")
         x = x.split("\t")
         raw_array = np.append(raw_array,x)

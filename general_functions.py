@@ -56,7 +56,7 @@ def saha(logn_e,T_layer,atomic_test=atomic_test):
     log_frac = np.log10(2*U_AII/U_AI) + 2.5*np.log10(T_layer) - e_ion1*(5040/T_layer) - logn_e - np.log10(k*T_layer) - 0.48
     return log_frac, U_AI, U_AII
 
-def densi(logn_e,T_layer,logN_H,logn_H):
+def fracc(logn_e,T_layer,logN_H,logn_H):
     logN_A = f_logN_A(logn_H, logN_H)
     log_frac, U_AI, U_AII = saha(logn_e,T_layer)
     n_AII = 1  / (1 + 10**(1/log_frac))
@@ -77,7 +77,7 @@ def pandas_data(logn_e, T_layer,logN_H,logn_H):
 #########riscas em analise##########
 
 #########numero de particulas absorsores
-def exci(logn_e,T_layer,logN_H,logn_H):
+def particles(logn_e,T_layer,logN_H,logn_H):
     data = pandas_data(logn_e,T_layer,logN_H,logn_H)
     logN_Aif = np.zeros(len(pd_lines.ele))
     Us = np.copy(logN_Aif)
@@ -86,7 +86,7 @@ def exci(logn_e,T_layer,logN_H,logn_H):
     names = []
 
     for i in range(len(pd_lines.ele)):
-        N_AI, N_AII, U_AI, U_AII = densi(logn_e,T_layer,logN_H,logn_H)
+        N_AI, N_AII, U_AI, U_AII = fracc(logn_e,T_layer,logN_H,logn_H)
         logN_As[i] = np.log10(N_AII[np.where(data.ele==np.array(pd_lines.ele)[i])])
         names = np.append(names, pd_lines.ele[i])
         mass[i] = np.array(pd_atomic.mass)[np.where(data.ele==np.array(pd_lines.ele)[i])]
@@ -102,8 +102,8 @@ def exci(logn_e,T_layer,logN_H,logn_H):
 lambdas_teste = pd_lines["lambda"]
 
 def voigt(a,e_mic,logn_e,T_layer,logN_H,logn_H):
-    logN_AIf, mass = exci(logn_e,T_layer,logN_H,logn_H)
-    L, N = 2000, len(lambdas_teste)
+    logN_AIf, mass = particles(logn_e,T_layer,logN_H,logn_H)
+    L, N = 1000, len(lambdas_teste)
     integral = np.zeros((L,N))
     linspaces = np.copy(integral)
     dlmb = [2.1,1.5,.8,.2,.2,.15,.3,.2,.1] #customizing where each line starts/finishes
